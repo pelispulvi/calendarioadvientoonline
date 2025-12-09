@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendario de Adviento Virtual</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="background-decor">
+      <div class="heart heart-1"></div>
+      <div class="heart heart-2"></div>
+      <div class="heart heart-3"></div>
+      <div class="sparkle sparkle-1"></div>
+      <div class="sparkle sparkle-2"></div>
+    </div>
+
+    <main class="main-container">
+      <header class="hero">
+        <div class="hero-text">
+          <p class="hero-label">Calendario de Adviento Virtual</p>
+          <h1>12 días</h1>
+          <p class="hero-subtitle">
+            Cada día, una sorpresita mas.  
+            No seas rata y mires por adelantado....
+          </p>
+        </div>
+
+        <div class="hero-info">
+          <div class="info-chip">
+            <span class="chip-label">Hoy es</span>
+            <span class="chip-value" id="today-label">Cargando...</span>
+          </div>
+          <div class="info-chip prueba-chip" id="test-mode-chip">
+            <span class="chip-value">MODO PRUEBA</span>
+          </div>
+          <p class="hero-note">
+            Asheeeee
+          </p>
+        </div>
+      </header>
+
+      <section class="calendar-section">
+        <h2 class="calendar-title">Días del 13 al 24</h2>
+        <p class="calendar-subtitle">
+          Toca una tarjetita para abrir la sorpresa del día.
+        </p>
+
+        <div class="calendar-grid" id="calendar-grid">
+          <!-- Las cartas se generan dinámicamente desde script.js -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="overlay hidden" id="overlay">
+      <div class="modal">
+        <button class="close-modal" id="close-modal-btn" aria-label="Cerrar">
+          ✕
+        </button>
+        <div class="modal-header">
+          <h2 id="modal-title">Título del día</h2>
+          <p id="modal-subtitle" class="modal-subtitle"></p>
+        </div>
+        <div id="modal-body" class="modal-body">
+          <!-- Contenido dinámico -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
