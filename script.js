@@ -23,17 +23,21 @@ const END_DAY = 24;
 */
 
 const daysContent = {
-  13: {
-    title: "Día 13 – Primer dia",
-    subtitle: "Primer mini recordatorio de lo mucho que te amo",
-    type: "frase",
-    text:
-      "Hoy empieza este gran calendario adviento.\n\n" +
-      "Espero que lo disfrutes y no hagas nada de trampa, mira que te estoy observando. " +
-      "Me costo mucho hacerlo asi que espero lo aprecies, lo hice con mucho amor para mi amorcito.\n\n" +
-      "Habran diferentes cositas cada dia, aveces lo mismo porque ya no tenia ideas pero bueno jeje.\n\n" +
-      "Te amo mucho y mucha suerte los proximos dias besitos.\n\n"
-  },
+13: {
+  title: "Día 13 – Primer dia",
+  subtitle: "Primer mini recordatorio de lo mucho que te amo",
+  type: "frase",
+  text:
+    "Hoy empieza este gran calendario adviento.\n\n" +
+    "Espero que lo disfrutes y no hagas nada de trampa, mira que te estoy observando. " +
+    "Me costo mucho hacerlo asi que espero lo aprecies, lo hice con mucho amor para mi amorcito.\n\n" +
+    "Habran diferentes cositas cada dia, aveces lo mismo porque ya no tenia ideas pero bueno jeje.\n\n" +
+    "Te amo mucho y mucha suerte los proximos dias besitos.\n\n"+
+    "PD: te regalo el siguiente voucher, denada. ",
+  voucherText: "🎟️ Voucher anashex: vale por un GRAN masaje en las partes que me pidas (30minutos)"
+},
+
+    
   14: {
     title: "Día 14 – Adivina la palabra",
     subtitle: "Si adivinás, desbloqueás un mini premio virtual",
@@ -46,7 +50,11 @@ const daysContent = {
       "Mmm, casi. Proba con otra cosa, empieza con ‘c’… y sin tildes porque soy un burrito que no sabe escribir",
     spotifyUrl:
       "https://open.spotify.com/intl-es/track/6dtdFWroDcxfNgv184UfB2?si=dc576f1435c54cc5",
-    spotifyLabel: "Abrir canción en Spotify 🎵"
+    spotifyLabel: "Abrir canción en Spotify 🎵",
+      secondSpotifyUrl: "https://open.spotify.com/intl-es/track/0WQiDwKJclirSYG9v5tayI?si=37c755f7b8a248ab",
+    secondSpotifyLabel: "ESTA ES"
+
+    
   },
   15: {
     title: "Día 15 – Cartita chiquita",
@@ -422,11 +430,40 @@ document.addEventListener("keydown", (e) => {
 // ===============================
 
 function renderFrase(config) {
+  const container = document.createElement("div");
+
   const p = document.createElement("p");
   p.classList.add("romantic-text");
   p.textContent = config.text || "error ashe 404";
-  modalBody.appendChild(p);
+  container.appendChild(p);
+
+  if (config.voucherText) {
+    const voucherBtn = document.createElement("button");
+    voucherBtn.classList.add("btn-primary", "voucher-btn");
+    voucherBtn.textContent = "Ver voucher 🎟️";
+
+    voucherBtn.addEventListener("click", () => {
+      if (!container.querySelector(".voucher-box")) {
+        const voucherBox = document.createElement("div");
+        voucherBox.classList.add("voucher-box", "small-note");
+        voucherBox.textContent = config.voucherText;
+
+        voucherBox.style.marginTop = "10px";
+        voucherBox.style.padding = "10px 12px";
+        voucherBox.style.borderRadius = "14px";
+        voucherBox.style.border = "1px dashed rgba(255, 127, 191, 0.8)";
+        voucherBox.style.background = "rgba(255, 241, 249, 0.95)";
+
+        container.appendChild(voucherBox);
+      }
+    });
+
+    container.appendChild(voucherBtn);
+  }
+
+  modalBody.appendChild(container);
 }
+
 
 function renderClicker(config) {
   const p = document.createElement("p");
@@ -505,17 +542,44 @@ function renderGuess(config) {
     if (value === target) {
       result.textContent = config.success || "¡Acertaste nASHE!";
 
-      // Día 14: botón personalizado que abre Spotify
-      if (config.spotifyUrl && !container.querySelector(".spotify-btn")) {
-        const spotifyBtn = document.createElement("button");
-        spotifyBtn.classList.add("btn-secondary", "spotify-btn");
-        spotifyBtn.textContent =
-          config.spotifyLabel || "Abrir canción en Spotify 🎵";
-        spotifyBtn.addEventListener("click", () => {
-          window.open(config.spotifyUrl, "_blank");
-        });
-        container.appendChild(spotifyBtn);
-      }
+    // Día 14: lógica especial con canción trucha + canción real
+    if (config.spotifyUrl && !container.querySelector(".spotify-btn")) {
+    const spotifyBtn = document.createElement("button");
+    spotifyBtn.classList.add("btn-secondary", "spotify-btn");
+    spotifyBtn.textContent =
+        config.spotifyLabel || "Abrir canción 🎵";
+
+    spotifyBtn.addEventListener("click", () => {
+        window.open(config.spotifyUrl, "_blank");
+
+        // Mensaje "mentira esa no es"
+        if (!container.querySelector(".fake-msg")) {
+        const fakeMsg = document.createElement("p");
+        fakeMsg.classList.add("small-note", "fake-msg");
+        fakeMsg.textContent = "JEJE TE TROLIE ESA NO ES 😈";
+        fakeMsg.style.marginTop = "8px";
+
+        container.appendChild(fakeMsg);
+
+        // Segundo botón de canción
+        if (config.secondSpotifyUrl) {
+            const secondBtn = document.createElement("button");
+            secondBtn.classList.add("btn-primary");
+            secondBtn.textContent =
+            config.secondSpotifyLabel || "Abrir canción real 🎶";
+
+            secondBtn.addEventListener("click", () => {
+            window.open(config.secondSpotifyUrl, "_blank");
+            });
+
+            container.appendChild(secondBtn);
+        }
+        }
+    });
+
+    container.appendChild(spotifyBtn);
+    }
+
 
       // Día 19: botón "Ver voucher" que muestra el voucher de wifi del crucero
       if (config.voucherText && !container.querySelector(".voucher-btn")) {
