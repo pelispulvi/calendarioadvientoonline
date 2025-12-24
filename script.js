@@ -165,7 +165,7 @@ const daysContent = {
       "Excelente! Parece que te conoces muy bien. 🥺💖",
     wrongText:
       "La verdad que sos medio boluda si no adivinaste",
-      voucherText: "🎟️ Voucher : vale por un heladito riki"
+      voucherText: "🎟️ Voucher : vale por una comidita juntos"
   },
   22: {
     title: "Día 22 – Querida paluchi.",
@@ -197,11 +197,7 @@ const daysContent = {
     subtitle: "Porfin termino, no tenia mas ideas.",
     type: "frase",
     text:
-      "Son las 3AM y estoy escribiendo esto, espero que lo valores.\n\n" +
-      "Ya llegaste al final y queria darte un super regalito por todo el amor que te tengo y lo feliz que me haces\n\n" +
-      "Espero te haya gustado y que sepas que hice lo mejor que pude.\n\n" +
-      "Te amo muchisimo y te voy a amar toda la vida.\n\n" + 
-      "Para ver tu regalito habra que vernos en persona...."  
+      "ashe"
   }
 };
 
@@ -315,6 +311,11 @@ function createDayCard(dayNumber, todayDay) {
   card.addEventListener("click", () => {
     if (!unlocked && !MODO_PRUEBA) {
       openLockedMessage(dayNumber);
+      return;
+    }
+    if (dayNumber === 24) {
+      // Día 24 ahora vive en una página aparte (más responsive)
+      window.location.href = "day24.html";
       return;
     }
     openDayModal(dayNumber);
