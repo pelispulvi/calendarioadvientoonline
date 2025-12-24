@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día 24 – Niveles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="day24.css" />
+  <script src="day24.js" defer></script>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <a class="back" href="index.html" aria-label="Volver al calendario">← Volver</a>
+    <div class="title">
+      <div class="kicker">Día 24</div>
+      <h1>Niveles finales</h1>
+    </div>
+    <button class="reset" id="reset-progress" type="button" title="Reiniciar niveles">Reset</button>
+  </header>
+
+  <main class="wrap">
+    <section class="card path">
+      <div class="path-head">
+        <h2>Mini caminito</h2>
+        <p>Completá en orden para desbloquear el premio final.</p>
+      </div>
+
+      <div class="levels" id="levels">
+        <!-- Botones de niveles -->
+      </div>
+    </section>
+
+    <section class="card content">
+      <div class="content-head">
+        <h2 id="stage-title">Elegí un nivel</h2>
+        <p id="stage-subtitle">Tocá “Nivel 1” para empezar.</p>
+      </div>
+
+      <div class="stage" id="stage">
+        <!-- Contenido dinámico -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+  </footer>
+</body>
+</html>
