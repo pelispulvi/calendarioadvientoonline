@@ -753,7 +753,7 @@ function renderSequence(config) {
   modalBody.appendChild(container);
 }
 
-// ===============================
+// =============================== 
 // INICIALIZACIÓN
 // ===============================
 
